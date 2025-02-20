@@ -2,10 +2,10 @@
   "name": "restaurant-review-app-backend",
   "version": "1.0.0",
   "description": "Backend for Restaurant Review App",
-  "main": "src/app.js",
+  "main": "src/app.mjs",
   "scripts": {
-    "start": "node src/app.js",
-    "dev": "nodemon src/app.js"
+    "start": "node src/app.mjs",
+    "dev": "nodemon src/app.mjs"
   },
   "dependencies": {
     "dotenv": "^8.6.0",
@@ -13,7 +13,7 @@
     "mongoose": "^5.13.23"
   },
   "devDependencies": {
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.22"
   },
   "author": "",
   "license": "ISC"
