@@ -8,13 +8,13 @@ dotenv.config();
 const app = express();
 
 // Connect to MongoDB
-connectDB();  
+connectDB();
 
 // Middleware
 app.use(express.json());
 
 // Routes
-app.use("/api/reviews", reviewRoutes);
+app.use("/api", reviewRoutes);
 
 // Start the server
 const PORT = process.env.PORT || 5000;

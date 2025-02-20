@@ -1,11 +1,39 @@
-import express from 'express';
-import ReviewController from '../controllers/reviewController.mjs';
+import express from "express";
+import mongoose from "mongoose";
 
 const router = express.Router();
-const reviewController = new ReviewController();
 
-router.get('/reviews', reviewController.getReviews);
-router.post('/reviews', reviewController.createReview);
-router.delete('/reviews/:id', reviewController.deleteReview);
+const Restaurant = mongoose.model(
+  "Restaurant",
+  new mongoose.Schema({
+    name: String,
+    cuisine: String,
+    borough: String,
+    address: {
+      building: String,
+      street: String,
+      zipcode: String,
+      coord: [Number],
+    },
+    grades: [
+      {
+        date: Date,
+        grade: String,
+        score: Number,
+      },
+    ],
+  }),
+  "restaurants" // Ensure this matches the collection name in MongoDB Atlas
+);
+
+// Route to get all restaurants
+router.get("/restaurants", async (req, res) => {
+  try {
+    const restaurants = await Restaurant.find();
+    res.json(restaurants);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
 
 export default router;
